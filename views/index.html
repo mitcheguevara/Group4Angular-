@@ -1,7 +1,10 @@
 <h1>Hello</h1>
+<h1>{{vm.post.post}}</h1>
+
 <h3 data-ng-repeat= 'post in vm.posts'>
-  {{post.post}}
+  <a data-ui-sref='postShow({id: post.id})'>{{post.post}}</a>
 </h3>
+
 
 <div>
   <img src="http://farm5.static.flickr.com/4374/36177907772_1663c089d3_m.jpg" alt="" />

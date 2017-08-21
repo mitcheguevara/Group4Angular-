@@ -15,18 +15,36 @@ angular
   '$resource',
   imagesService
 ])
+.factory('logic', [
+  '$resource',
+  'posts',
+  'images',
+  logicService
+])
 .controller('IndexController' ,[
   'posts',
   'images',
   IndexControllerFn
 ])
+.controller('ShowController', [
+  'posts',
+  '$stateParams',
+  ShowControllerFn
+])
 
 function RouterFunction($stateProvider) {
   $stateProvider
-  .state('ransomIndex', {
+  .state('postIndex', {
     url: '/index',
     templateUrl: 'views/index.html',
     controller: 'IndexController',
+    controllerAs: 'vm'
+  }
+  )
+  .state('postShow', {
+    url: '/posts/:id',
+    templateUrl: 'views/show.html',
+    controller: 'ShowController',
     controllerAs: 'vm'
   }
   )
@@ -34,7 +52,10 @@ function RouterFunction($stateProvider) {
 function postsService($resource) {
   return $resource('http://localhost:3000/posts/:id', {}, {
       update: {method: 'PUT'},
+
     })
+
+
 
 }
 
@@ -45,9 +66,26 @@ function imagesService($resource) {
 
 }
 
+function logicService($resource, images, posts) {
+  return {
+    all:all
+  }
+
+  function all() {
+    return posts.query()
+  }
+}
+
 function IndexControllerFn(posts, images) {
   this.posts = posts.query()
   this.images = images.query()
+console.log(this.post)
+}
 
+function ShowControllerFn(posts, $stateParams) {
+  this.posts = posts.query()
+  this.post = posts.get({id: $stateParams.id})
+  console.log(logic.all)
 
+    
 }
