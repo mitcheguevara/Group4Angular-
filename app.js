@@ -72,14 +72,47 @@ function logicService($stateParams, $resource, posts, images) {
 
   function translate() {
     // var this_arr = []
-    test_post = posts.get({id: $stateParams.id})
-    console.log(test_post)
-    console.log(test_post.content)
+    test_post = posts.get({id: $stateParams.id}).$promise.then(function (response) {
+       post_string = response.content.toUpperCase()
+       console.log(post_string)
+
+
+      //  ps_array = post_string.map(function(x){
+      //    images.query().$promise.then(function (img_response) {
+      //     //  console.log(img_response)
+      //      console.log(post_string)
+      //      for (i=0; i < img_response.length; i++) {
+      //      if (x == img_response[i].letter) {
+      //       return img_response[i].url
+      //      }
+      //    }
+      //    })
+      //  })
+      //  console.log(ps_array)
+
+
+
+       for (i=0; i < post_string.length; i++) {
+         let test_string = post_string[i]
+
+         images.query().$promise.then(function (img_response) {
+        // console.log(img_response.url)
+         for (l=0; l < img_response.length; l++) {
+          //  console.log(test_string)
+           if (test_string === img_response[l].letter) {
+            //  console.log(img_response[l].url)
+           }
+         }})
+       }
+
+    })
+    // console.log(test_post)
+    // console.log(test_post.content)
     // for (i=0; i < this_word.length; i++){
     //   this_arr.push(this_word.charAt(i))
     //   console.log(this_word.charAt(i))
     // }
-    return test_post.content
+    return post_string
   }
 
   function all() {
