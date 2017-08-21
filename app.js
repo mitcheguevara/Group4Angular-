@@ -16,6 +16,7 @@ angular
   imagesService
 ])
 .factory('logic', [
+  '$stateParams',
   '$resource',
   'posts',
   'images',
@@ -27,6 +28,7 @@ angular
   IndexControllerFn
 ])
 .controller('ShowController', [
+  'logic',
   'posts',
   '$stateParams',
   ShowControllerFn
@@ -54,21 +56,30 @@ function postsService($resource) {
       update: {method: 'PUT'},
 
     })
-
-
-
 }
 
 function imagesService($resource) {
   return $resource('http://localhost:3000/images/:id', {}, {
       update: {method: 'PUT'},
     })
-
 }
 
-function logicService($resource, images, posts) {
+function logicService($stateParams, $resource, posts, images) {
   return {
-    all:all
+    all:all,
+    translate:translate
+  }
+
+  function translate() {
+    // var this_arr = []
+    test_post = posts.get({id: $stateParams.id})
+    console.log(test_post)
+    console.log(test_post.content)
+    // for (i=0; i < this_word.length; i++){
+    //   this_arr.push(this_word.charAt(i))
+    //   console.log(this_word.charAt(i))
+    // }
+    return test_post.content
   }
 
   function all() {
@@ -82,10 +93,8 @@ function IndexControllerFn(posts, images) {
 console.log(this.post)
 }
 
-function ShowControllerFn(posts, $stateParams) {
-  this.posts = posts.query()
+function ShowControllerFn(logic, posts, $stateParams) {
   this.post = posts.get({id: $stateParams.id})
-  console.log(logic.all)
-
-    
+  this.posts = logic.all()
+  this.translate = logic.translate()
 }
