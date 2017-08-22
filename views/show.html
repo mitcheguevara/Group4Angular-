@@ -3,3 +3,6 @@
 <h3>{{vm.translate}}</h3>
 
 <p ng-repeat= 'post in vm.posts'>{{post}}</p>
+
+
+<a ui-sref="postEdit({id: vm.post.id})">Edit or Delete Post</a>
