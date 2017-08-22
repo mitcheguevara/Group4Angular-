@@ -96,10 +96,11 @@ function logicService($stateParams, $resource, Post, images) {
 
   function translate() {
     // var this_arr = []
+    sorted_arr = []
     Post.get({id: $stateParams.id}).$promise.then(function (response) {
        post_string = response.content.toUpperCase().split('')
        img_arr = []
-       sorted_arr = []
+
        console.log(post_string)
 
        images.query().$promise.then(function (img_response) {
@@ -120,7 +121,7 @@ function logicService($stateParams, $resource, Post, images) {
         })
 
         })
-
+        return sorted_arr
         }
       //  for (i=0; i < post_string.length; i++) {
       //    let test_string = post_string[i]

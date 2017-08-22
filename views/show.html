@@ -1,10 +1,11 @@
 <h3>{{vm.post.content}}</h3>
 
-<h3>{{vm.translate}}</h3>
+
 
 <div class="" data-ng-repeat="translated in vm.translate">
 
-<img ng-src="{{translated.url}}" alt="" />
+  <img ng-src="{{translated.url}}" alt="" />
+
 </div>
 
 <p ng-repeat= 'post in vm.posts'>{{post.content}}</p>
