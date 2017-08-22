@@ -7,7 +7,7 @@ angular
   '$stateProvider',
   RouterFunction
 ])
-.factory('posts', [
+.factory('Post', [
   '$resource',
   postsService
 ])
@@ -18,20 +18,30 @@ angular
 .factory('logic', [
   '$stateParams',
   '$resource',
-  'posts',
+  'Post',
   'images',
   logicService
 ])
 .controller('IndexController' ,[
-  'posts',
+  'Post',
   'images',
   IndexControllerFn
 ])
 .controller('ShowController', [
   'logic',
-  'posts',
+  'Post',
   '$stateParams',
   ShowControllerFn
+])
+.controller('PostNewController', [
+  '$state',
+  'Post',
+  PostNewController
+])
+.controller('PostEditController', [
+  '$state',
+  'Post',
+  PostEditController
 ])
 
 function RouterFunction($stateProvider) {
@@ -43,11 +53,25 @@ function RouterFunction($stateProvider) {
     controllerAs: 'vm'
   }
   )
+  .state('postNew', {
+    url: '/posts/new',
+    templateUrl: 'views/new.html',
+    controller: 'PostNewController',
+    controllerAs: 'vm'
+  }
+  )
   .state('postShow', {
     url: '/posts/:id',
     templateUrl: 'views/show.html',
     controller: 'ShowController',
     controllerAs: 'vm'
+  }
+  )
+  .state ('postEdit', {
+  url: 'posts/:id/edit',
+  templateUrl: 'views/edit.html',
+  controller: 'PostEditController',
+  controllerAs: 'vm'
   }
   )
 }
@@ -64,7 +88,7 @@ function imagesService($resource) {
     })
 }
 
-function logicService($stateParams, $resource, posts, images) {
+function logicService($stateParams, $resource, Post, images) {
   return {
     all:all,
     translate:translate
@@ -72,7 +96,7 @@ function logicService($stateParams, $resource, posts, images) {
 
   function translate() {
     // var this_arr = []
-    test_post = posts.get({id: $stateParams.id}).$promise.then(function (response) {
+    test_post = Post.get({id: $stateParams.id}).$promise.then(function (response) {
        post_string = response.content.toUpperCase()
        console.log(post_string)
 
@@ -116,18 +140,41 @@ function logicService($stateParams, $resource, posts, images) {
   }
 
   function all() {
-    return posts.query()
+    return Post.query()
   }
 }
 
-function IndexControllerFn(posts, images) {
-  this.posts = posts.query()
+function IndexControllerFn(Post, images) {
+  this.posts = Post.query()
   this.images = images.query()
 console.log(this.post)
 }
 
-function ShowControllerFn(logic, posts, $stateParams) {
-  this.post = posts.get({id: $stateParams.id})
+function ShowControllerFn(logic, Post, $stateParams) {
+  this.post = Post.get({id: $stateParams.id})
   this.posts = logic.all()
-  this.translate = logic.translate()
+  // this.translate = logic.translate()
+}
+
+function PostNewController ($state, Post) {
+  this.post = new Post()
+  this.create = function () {
+    this.post.$save(() => {
+      $state.go('postIndex')
+    })
+  }
+}
+
+function PostEditController($state, Post) {
+  this.post = Post.get({id: $state.params.id})
+  this.update = function () {
+    this.post.$update({id: $state.params.id}).then(() => {
+      $state.go('postIndex', {}, {reload: true})
+    })
+  }
+  this.destroy = function () {
+    this.post.$delete({id: $state.params.id}).then(() => {
+      $state.go('postIndex', {}, {reload: true})
+    })
+  }
 }
