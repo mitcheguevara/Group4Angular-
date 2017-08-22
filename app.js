@@ -96,52 +96,62 @@ function logicService($stateParams, $resource, Post, images) {
 
   function translate() {
     // var this_arr = []
-    posts.get({id: $stateParams.id}).$promise.then(function (response) {
-       post_string = response.content.toUpperCase()
+    Post.get({id: $stateParams.id}).$promise.then(function (response) {
+       post_string = response.content.toUpperCase().split('')
+       img_arr = []
+       sorted_arr = []
        console.log(post_string)
 
-       for (i=0; i < post_string.length; i++) {
-         let test_string = post_string[i]
-          console.log(test_string)
-         images.query().$promise.then(function (img_response) {
-        console.log(img_response.url)
-         for (l=1; l < img_response.length; l++) {
-          //  console.log(test_string)
-          ll = Math.floor((Math.random() * 400))
-           if (test_string === img_response[ll].letter) {
-             console.log(img_response[ll].url)
+       images.query().$promise.then(function (img_response) {
 
-             break
+         post_string.forEach(function (letter) {
+           let letter_images = img_response.filter(function (img) {
+               return img.letter == letter
+           })
+
+
+           if (letter != " ") {
+             let random_index = Math.floor(Math.random() * letter_images.length)
+             let random_letter_image = letter_images[random_index]
+             sorted_arr.push(random_letter_image)
            }
-         }
-       })
-       }
+         })
+         console.log(sorted_arr)
+        })
 
-    })
+        })
+
+        }
+      //  for (i=0; i < post_string.length; i++) {
+      //    let test_string = post_string[i]
+      //     console.log(test_string)
+       //
+      //      console.log(img_response)
+      //    for (l=1; l < img_response.length; l++) {
+      //     //  console.log(test_string)
+      //     ll = Math.floor((Math.random() * 400))
+      //      if (test_string === img_response[ll].letter) {
+      //        console.log(img_response[ll].url)
+      //        img_arr.push({letter: test_string, url:img_response[ll].url})
+      //          if (img_arr.length === post_string.length) {
+      //            for (x=0; x< post_string.length; x++) {
+      //             //  console.log(img_arr)
+      //              for (y=0; y< img_arr.length; y++) {
+      //               //  console.log('hi')
+      //                if (post_string[x] === img_arr[y].letter) {
+      //                 //  console.log(img_arr[y])
+      //                  sorted_arr.push(img_arr[y])
+      //                }
+        //            }
+        //          }
+        //        }
+        //      console.log(sorted_arr)
+        //      break
+        //    }
+        //  }
+      //  }
 
 
-    //  ps_array = post_string.map(function(x){
-    //    images.query().$promise.then(function (img_response) {
-    //     //  console.log(img_response)
-    //      console.log(post_string)
-    //      for (i=0; i < img_response.length; i++) {
-    //      if (x == img_response[i].letter) {
-    //       return img_response[i].url
-    //      }
-    //    }
-    //    })
-    //  })
-    //  console.log(ps_array)
-
-
-    // console.log(test_post)
-    // console.log(test_post.content)
-    // for (i=0; i < this_word.length; i++){
-    //   this_arr.push(this_word.charAt(i))
-    //   console.log(this_word.charAt(i))
-    // }
-    return post_string
-  }
 
   function all() {
     return Post.query()
@@ -157,7 +167,7 @@ console.log(this.post)
 function ShowControllerFn(logic, Post, $stateParams) {
   this.post = Post.get({id: $stateParams.id})
   this.posts = logic.all()
-  // this.translate = logic.translate()
+  this.translate = logic.translate()
 }
 
 function PostNewController ($state, Post) {

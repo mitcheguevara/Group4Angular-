@@ -1,8 +1,8 @@
 <h1>Hello</h1>
-<a ui-sref="postNew">New post</a> 
+<a ui-sref="postNew">New post</a>
 <h1>{{vm.post.content}}</h1>
 
-<h3 data-ng-repeat= 'post in vm.posts'>
+<h3 data-ng-repeat='post in vm.posts'>
   <a data-ui-sref='postShow({id: post.id})'>{{post.content}}</a>
 </h3>
 

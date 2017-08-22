@@ -2,7 +2,12 @@
 
 <h3>{{vm.translate}}</h3>
 
-<p ng-repeat= 'post in vm.posts'>{{post}}</p>
+<div class="" data-ng-repeat="translated in vm.translate">
+
+<img ng-src="{{translated.url}}" alt="" />
+</div>
+
+<p ng-repeat= 'post in vm.posts'>{{post.content}}</p>
 
 
 <a ui-sref="postEdit({id: vm.post.id})">Edit or Delete Post</a>
