@@ -1,9 +1,54 @@
-div {
+* {
+  -moz-box-sizing: border-box; /* Firexfox */
+  -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
+  box-sizing: border-box; /* IE */
+}
+
+body {
+  margin: 0 auto;
+  background-image: url("images/cover-board.jpg");
+}
+
+main {
+  background-image: url('images/paperedit.jpg');
+  width: 80%;
+  margin: 0 auto;
+  height: 100vh;
+  padding-top: 50px;
+  text-align: center;
+}
+
+.word-wrapper {
+  padding: 10% 0 2%;
+}
+
+.letter {
   height:100px;
   width:100px;
+  display: inline;
+  padding: 5px;
 }
 
 img {
   height:100px;
   width:100px;
+}
+
+.space {
+  display: block;
+  opacity: 0;
+  width: 5px;
+  height: 5px;
+}
+
+.letter:nth-child(odd) {
+  transform: rotate(3deg);
+}
+
+.letter:nth-child(even) {
+  transform: rotate(-1deg);
+}
+
+.letter:nth-child(3n) {
+  transform: rotate(2deg);
 }
