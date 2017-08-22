@@ -96,13 +96,14 @@ function logicService($stateParams, $resource, Post, images) {
 
   function translate() {
     // var this_arr = []
-    Post.get({id: $stateParams.id}).$promise.then(function (response) {
+    sorted_arr = []
+    final_arr = Post.get({id: $stateParams.id}).$promise.then(function (response) {
        post_string = response.content.toUpperCase().split('')
        img_arr = []
        sorted_arr = []
        console.log(post_string)
 
-       images.query().$promise.then(function (img_response) {
+       final_sort = images.query().$promise.then(function (img_response) {
 
          post_string.forEach(function (letter) {
            let letter_images = img_response.filter(function (img) {
@@ -117,10 +118,13 @@ function logicService($stateParams, $resource, Post, images) {
            }
          })
          console.log(sorted_arr)
+         console.log(final_arr)
+         return sorted_arr
         })
-
+         return final_sort
         })
-
+        console.log(final_arr)
+        return final_arr
         }
       //  for (i=0; i < post_string.length; i++) {
       //    let test_string = post_string[i]
@@ -168,6 +172,11 @@ function ShowControllerFn(logic, Post, $stateParams) {
   this.post = Post.get({id: $stateParams.id})
   this.posts = logic.all()
   this.translate = logic.translate()
+  console.log(this.translate)
+
+  // console.log(logic.translate())
+  // console.log(this.translate)
+  // console.log(logic.translate())
 }
 
 function PostNewController ($state, Post) {
