@@ -7,9 +7,7 @@
 </h3>
 
 <div data-ng-repeat="word in vm.indexPosts">
-  <div data-ng-repeat="letter in word">
-    <img ng-src="{{letter.url}}" />
-  </div>
+    <img data-ng-repeat="letter in word" ng-src="{{letter.url}}" class="letter" />
 </div>
 
 
