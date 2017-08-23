@@ -5,3 +5,8 @@
 <h3 data-ng-repeat='post in vm.posts'>
   <a data-ui-sref='postShow({id: post.id})'>{{post.content}}</a>
 </h3>
+
+
+  <div data-ng-repeat='word in vm.words'>
+    <img ng-src="{{word.src}}" alt="" />
+  </div>

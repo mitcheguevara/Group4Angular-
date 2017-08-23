@@ -110,8 +110,11 @@ function logicService($stateParams, $resource, Post, images) {
                return img.letter == letter
            })
 
+           if (letter == " ") {
+             sorted_arr.push({letter: 'space'})
+           }
 
-           if (letter != " ") {
+           else if (letter != " ") {
              let random_index = Math.floor(Math.random() * letter_images.length)
              let random_letter_image = letter_images[random_index]
              sorted_arr.push(random_letter_image)
