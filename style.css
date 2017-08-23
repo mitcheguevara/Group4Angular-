@@ -147,29 +147,23 @@ section {
 }
 
 .s {
-  animation: nomove 2s ease;
-  left: 49%;
-}
-
-.o {
-  animation: nomove 1s ease;
+  animation: moves 1s ease;
   left: 63%;
 }
 
+.o {
+  animation: moveo 1s ease;
+  left: 49%;
+}
+
 .m {
- animation: movem 1s ease forwards;
+ animation: movem 1s ease;
  left: 35%;
 }
 
-/*.r, .a, .n, .s, .o, .m {
-  animation-delay: 1.5s;
-  animation-fill-mode: forwards;
-  position: absolute;
-}*/
-
 .l {
   left: 45%;
-  animation: movel 1s ease forwards;
+  animation: movel 1s ease;
 }
 
 .e {
@@ -202,11 +196,12 @@ section {
   animation: movess 1s ease;
 }
 
-.r, .a, .n, .s, .o, .m, .l, .e, .t, .tt, .ee, .rr, .ss {
+.ransom-wrapper img, .notes-wrapper img {
   animation-delay: 1.5s;
   animation-fill-mode: forwards;
   position: absolute;
 }
+
 
 @keyframes mover {
   0% {
@@ -244,12 +239,21 @@ section {
   }
 }
 
-@keyframes nomove {
+@keyframes moves {
   0% {
-    margin-left: 0px;
+    left: 63%;
   }
   100% {
-    margin-left: 0px;
+    left: 49%;
+  }
+}
+
+@keyframes moveo {
+  0% {
+    left: 49%;
+  }
+  100% {
+    left: 63%;
   }
 }
 
