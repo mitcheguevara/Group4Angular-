@@ -49,56 +49,220 @@ main {
 }
 
 .home-words {
-  padding: 5%;
+  padding: 5% 0%;
 }
 
 .secondary-font {
-  font-family: 'Frijole', cursive;
+  /*font-family: 'Frijole', cursive;*/
+  font-family: 'Armata', sans-serif;
 }
 
 a.secondary-font {
+  display: block;
   color: black;
   text-decoration: none;
   font-size: 3em;
   text-transform: capitalize;
 }
 
+.notes-wrapper {
+  position: relative;
+  margin-top: 20%;
+}
+
+.ransom-wrapper {
+  position: relative;
+  margin-left: 5px;
+}
+
 .r {
-  position: absolute;
   animation: mover 1s ease;
-  animation-delay: 1.6s;
-  animation-fill-mode: forwards;
+  left: 21%;
 }
 
 .a {
-  position: absolute;
   animation: movea 1s ease;
-  animation-delay: 1.6s;
+  left: 7%;
+}
+
+.n {
+  animation: moven 1s ease;
+  left: 77%;
+}
+
+.s {
+  animation: nomove 2s ease;
+  left: 49%;
+}
+
+.o {
+  animation: nomove 1s ease;
+  left: 63%;
+}
+
+.m {
+ animation: movem 1s ease;
+ left: 35%;
+}
+
+.r, .a, .n, .s, .o, .m, .l, .e, .t, .tt, .ee, .rr, .ss {
+  animation-delay: 1.5s;
   animation-fill-mode: forwards;
+  position: absolute;
+}
+
+/*.l, .e, .t, .tt, .ee, .rr, .ss {
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+  position: absolute;
+}*/
+
+.l {
+  left: 45%;
+  animation: movel 1s ease;
+}
+
+.e {
+  left: 31%;
+  animation: movee 1s ease;
+}
+
+.t {
+  left: 17%;
+  animation: movet 1s ease;
+}
+
+.tt {
+  left: 59%;
+  animation: movett 1s ease;
+}
+
+.ee {
+  left: 73%;
+  animation: moveee 1s ease;
+}
+
+.rr {
+  left: 86%;
+  animation: moverr 1s ease;
+}
+
+.ss {
+  left: 4%;
+  animation: movess 1s ease;
 }
 
 @keyframes mover {
   0% {
-    margin-left: 0px;
+    left: 21%;
   }
   100% {
-    margin-left: 100px;
+    left: 9%;
   }
 }
 
 @keyframes movea {
   0% {
-    margin-left: 0px;
+    left: 7%;
   }
   100% {
-    margin-left: -100px;
+    left: 22%;
   }
 }
 
+@keyframes movem {
+  0% {
+    left: 35%;
+  }
+  100% {
+    left: 75%;
+  }
+}
+
+@keyframes moven {
+  0% {
+    left: 77%;
+  }
+  100% {
+    left: 35%;
+  }
+}
+
+@keyframes nomove {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 0px;
+  }
+}
+
+@keyframes movel {
+  0% {
+    left: 45%;
+  }
+  100% {
+    left: 4%;
+  }
+}
+
+@keyframes movee {
+  0% {
+    left: 31%;
+  }
+  100% {
+    left: 45%;
+  }
+}
+
+@keyframes movet {
+  0% {
+    left: 17%;
+  }
+  100% {
+    left: 45%;
+  }
+}
+
+@keyframes movett {
+  0% {
+    left: 59%;
+  }
+  100% {
+    left: 31%;
+  }
+}
+
+@keyframes moveee {
+  0% {
+    left: 73%;
+  }
+  100% {
+    left: 50%;
+  }
+}
+
+@keyframes moverr {
+  0% {
+    left: 86%;
+  }
+  100% {
+    left: 73%;
+  }
+}
+
+@keyframes movess {
+  0% {
+    left: 4%;
+  }
+  100% {
+    left: 86%;
+  }
+}
 
 /********** MOBILE STYLES **********/
 
-@media screen and (max-width: 950px){
+@media screen and (max-width: 980px){
   .letter {
     width: 70px;
     height: 70px;
@@ -109,6 +273,10 @@ a.secondary-font {
 }
 
 @media screen and (max-width: 600px){
+
+  main {
+    width: 90%;
+  }
   .letter {
     width: 50px;
     height: 50px;
@@ -123,8 +291,8 @@ a.secondary-font {
     width: 90%;
   }
   .letter {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
   }
   .space {
     height: 5px;
