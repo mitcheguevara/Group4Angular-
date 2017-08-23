@@ -22,6 +22,7 @@ nav {
   background-color: rgba(0,0,0,0.5);
   padding: 10px;
   font-size: 24px;
+  z-index: 1;
 }
 
 nav a {
@@ -42,13 +43,13 @@ section {
 }
 
 
-.word-wrapper {
-  padding: 10% 0 2%;
+.show-wrapper {
+  padding: 14% 0 2%;
 }
 
 .letter {
-  height:100px;
-  width:100px;
+  height: 80px;
+  width: 80px;
   margin: 5px;
   box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.2);
 }
@@ -106,8 +107,32 @@ section {
   transform: rotate(2deg);
 }
 
+form {
+  margin-top: 15%;
+}
+
+form input, button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  border: 2px solid #666666;
+  background-color: rgba(255,255,255,0.5);
+  font-size: 18px;
+  width: 250px;
+  text-align: center;
+}
+
+.placeholder, input {
+  color: #8c8c8c;
+  text-transform: uppercase;
+}
+
+button {
+  cursor: pointer;
+}
+
 .home-words {
-  padding: 5% 0%;
+  padding: 10% 0% 15% 0%;
 }
 
 .secondary-font {
@@ -117,7 +142,8 @@ section {
  a.secondary-font {
   color: #373737;
   text-decoration: none;
-  font-size: 8em;
+  font-size: 4em;
+  padding-top: 50px;
   text-transform: capitalize;
 }
 
@@ -323,6 +349,9 @@ section {
 /********** MOBILE STYLES **********/
 
 @media screen and (max-width: 980px){
+  section, .post {
+    width: 90%;
+  }
   .letter {
     width: 70px;
     height: 70px;
@@ -334,7 +363,7 @@ section {
 
 @media screen and (max-width: 600px){
 
-  main {
+  section, .post {
     width: 90%;
   }
   .letter {
@@ -347,10 +376,10 @@ section {
 }
 
 @media screen and (max-width: 400px){
-  main {
-    width: 90%;
+  section, .post {
+    width: 96%;
   }
-  .letter {
+  .letter, .word img {
     width: 35px;
     height: 35px;
   }

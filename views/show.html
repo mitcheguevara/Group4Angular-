@@ -1,6 +1,6 @@
 
 <section>
-  <div class="word-wrapper">
+  <div class="show-wrapper">
       <img class="letter {{translated.letter}}" data-ng-repeat="translated in vm.translate track by $index" ng-src="{{translated.url}}" alt="" />
   </div>
   <a ui-sref="postEdit({id: vm.post.id})">Edit or Delete Post</a>
