@@ -11,8 +11,9 @@
     <title>RandsomApp</title>
   </head>
   <body>
-    <main>
-    <section data-ui-view>
+    <nav class="secondary-font"><a ui-sref="postIndex">letters</a> | <a ui-sref="postNew">write</a></nav>
+    <main data-ui-view>
+    <section>
       <div class="home-words">
         <div class="ransom-wrapper">
           <img class="letter a" src="http://farm5.static.flickr.com/4391/36177903972_fa97948b6c_m.jpg">
@@ -32,7 +33,7 @@
           <img class="letter rr" src="http://farm5.static.flickr.com/4034/35754139935_baed11b954_m.jpg">
         </div>
       </div>
-      <a ui-sref="postIndex" class="secondary-font">decode notes</a>
+      <a ui-sref="postIndex" class="secondary-font">solve letters</a>
     </section>
     </main>
   </body>

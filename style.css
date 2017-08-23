@@ -4,22 +4,44 @@
   box-sizing: border-box; /* IE */
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   margin: 0 auto;
   background-image: url("images/cover-board.jpg");
 }
 
+nav {
+  position: fixed;
+  margin: 0 auto;
+  width: 100%;
+  color: white;
+  text-align: center;
+  background-color: rgba(0,0,0,0.5);
+  padding: 10px;
+  font-size: 24px;
+}
+
+nav a {
+  color: #ececec;
+}
 main {
+  margin: 0 auto;
+}
+
+section {
   background-image: url('images/paperedit.jpg');
   width: 80%;
   margin: 0 auto;
   height: 100vh;
-  padding-top: 50px;
+  padding-top: 5%;
   text-align: center;
+  box-shadow: 0px 0px 15px 15px rgba(0,0,0,0.5);
 }
-h3{
-  visibility: hidden;
-}
+
+
 .word-wrapper {
   padding: 10% 0 2%;
 }
@@ -29,6 +51,36 @@ h3{
   width:100px;
   margin: 5px;
   box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.2);
+}
+
+.post-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5%;
+}
+
+.post {
+  background-image: url('images/paperedit.jpg');
+  margin: 2% auto;
+  width: 80%;
+  padding: 5% 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: -5px 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.word {
+  padding: 20px;
+  text-align: center;
+}
+
+.word img {
+  width: 60px;
+  height: 60px;
 }
 
 .space {
@@ -56,9 +108,9 @@ h3{
 
 .secondary-font {
   font-family: 'Covered By Your Grace', cursive;
+  letter-spacing: 3px;
 }
-
-a.secondary-font {
+ a.secondary-font {
   color: #373737;
   text-decoration: none;
   font-size: 8em;
@@ -197,7 +249,7 @@ a.secondary-font {
   }
 }
 
-@keyframes movel {
+/*@keyframes movel {
   0% {
     left: 45%;
   }
@@ -258,7 +310,7 @@ a.secondary-font {
   100% {
     left: 86%;
   }
-}
+}*/
 
 /********** MOBILE STYLES **********/
 

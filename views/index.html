@@ -1,21 +1,7 @@
-<h1>Randsom Letters</h1>
-<a ui-sref="postNew">New post</a>
-<h1>{{vm.post.content}}</h1>
-<a data-ui-sref='postShow({id: post.id})'>{{post.content}}</a>
-
-
-
-
-
-    <div data-ng-repeat="post in vm.indexPosts track by $index" >
-      <div data-ng-repeat="word in post" ui-sref="postShow({id: post.postId})">
-      <img class="letter {{letter.letter}}" data-ng-repeat="letter in word track by $index" ng-src="{{letter.url}}" />
+<div class="post-wrapper">
+  <div data-ng-repeat="post in vm.indexPosts track by $index" class="post" ui-sref="postShow({id: post.postId})" >
+    <div data-ng-repeat="word in post" ui-sref="postShow({id: post.postId})" class="word">
+        <img class="letter {{letter.letter}}" data-ng-repeat="letter in word track by $index" ng-src="{{letter.url}}" />
     </div>
-    </div>
-
-
-<h3 data-ng-repeat='post in vm.posts'>
-</h3>
-  <!-- <div data-ng-repeat='word in vm.words'>
-    <img ng-src="{{word.src}}" alt="" />
-  </div> -->
+  </div>
+</div>
