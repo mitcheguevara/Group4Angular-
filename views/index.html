@@ -8,11 +8,12 @@
 
 
 
-<div data-ng-repeat="post in vm.posts">
-    <div data-ng-repeat="word in vm.indexPosts track by $index" ui-sref="postShow({id: post.id})">
+    <div data-ng-repeat="post in vm.indexPosts track by $index" >
+      <div data-ng-repeat="word in post" ui-sref="postShow({id: post.postId})">
       <img class="letter {{letter.letter}}" data-ng-repeat="letter in word track by $index" ng-src="{{letter.url}}" />
     </div>
-</div>
+    </div>
+
 
 
   <!-- <div data-ng-repeat='word in vm.words'>

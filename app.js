@@ -161,21 +161,30 @@ function logicService($stateParams, $resource, Post, images) {
     this_word_arr = []
     post_words = []
     space_arr = []
+    unshuffled_word = []
+    assign_unshuffle = []
+    unshuffled_phrase = []
+    final_shuffled = []
+    shuffled = []
     Post.query().$promise.then(function (response) {
     images.query().$promise.then(function (img_response) {
 
         response.forEach(function (post) {
           var word_arr = []
           word_arr.push(post.content)
+          word_arr.postId = post.id
           words_arr.push(word_arr)
         })
         words_arr.forEach(function (word) {
           console.log(word)
+          // console.log(word.postId)
           let this_word_arr = []
             // console.log(post_string)
-          if (word[0].includes(' ')) {
+          // if (word[0].includes(' ')) {
+
+
             space_arr = word.toString().toUpperCase().split(' ')
-            console.log(space_arr)
+            // console.log(space_arr)
             space_arr.forEach(function(sWord) {
               sWord_arr= sWord.split('')
                 sWord_arr.forEach(function(sLetter){
@@ -186,53 +195,58 @@ function logicService($stateParams, $resource, Post, images) {
                   let random_letter_image = letter_images[random_index]
                   this_word_arr.push(random_letter_image)
                   var unshf= Object.assign({}, random_letter_image)
-                  unshuffled.push(unshf)
+                  unshuffled_word.push(unshf)
 
                 })
-
+                unshuffled_phrase.push(unshuffled_word)
+                unshuffled_word = []
+                post_words.postId = word.postId
                 post_words.push(this_word_arr)
                 this_word_arr = []
             })
-
+                unshuffled_arr.push(unshuffled_phrase)
+                unshuffled_arr = []
                 t_words_arr.push(post_words)
+                post_words = []
+          // }
 
-          }
-
-          else {
-            post_string = word.toString().toUpperCase().split('')
-
-            post_string.forEach(function (letter) {
-          let letter_images = img_response.filter(function (img) {
-            return img.letter == letter
-          })
-
-          if (letter == ' ') {
-            // this_word_arr.push({letter: 'space'})
-            console.log(this_word_arr)
-            post_words.push(this_word_arr)
-            this_word_arr = []
-          }
-
-          else if (letter != ' ' ) {
-            let random_index = Math.floor(Math.random() * letter_images.length)
-            let random_letter_image = letter_images[random_index]
-            this_word_arr.push(random_letter_image)
-            var unshf= Object.assign({}, random_letter_image)
-            unshuffled.push(unshf)
-            // console.log(post_string.indexOf(letter))
-            if (post_string.indexOf(letter) === post_string.length) {
-              post_words.push(this_word_arr)
-            }
-          }
-        })
-
-        unshuffled_arr.push(unshuffled)
-        unshuffled = []
-        // console.log(this_word_arr)
-        // console.log(unshuffled_arr)
-
-        t_words_arr.push(this_word_arr)
-      }
+        //   else {
+        //     post_string = word.toString().toUpperCase().split('')
+        //
+        //     post_string.forEach(function (letter) {
+        //       let letter_images = img_response.filter(function (img) {
+        //         return img.letter == letter
+        //       })
+        //
+        //       if (letter == ' ') {
+        //         // this_word_arr.push({letter: 'space'})
+        //         // console.log(this_word_arr)
+        //         post_words.push(this_word_arr)
+        //         this_word_arr = []
+        //       }
+        //
+        //       else if (letter != ' ' ) {
+        //         let random_index = Math.floor(Math.random() * letter_images.length)
+        //         let random_letter_image = letter_images[random_index]
+        //         this_word_arr.push(random_letter_image)
+        //         var unshf= Object.assign({}, random_letter_image)
+        //         unshuffled.push(unshf)
+        //         // console.log(post_string.indexOf(letter))
+        //         if (post_string.indexOf(letter) === post_string.length) {
+        //           post_words.push(this_word_arr)
+        //         }
+        //       }
+        //     })
+        //
+        //     unshuffled_arr.push(unshuffled)
+        //     unshuffled = []
+        //     assign_unshuffle = Object.assign({}, unshuffled_arr)
+        //     console.log(assign_unshuffle)
+        //     // console.log(this_word_arr)
+        //     console.log(unshuffled_arr)
+        //     this_word_arr.postId =
+        //     t_words_arr.push(this_word_arr)
+        // }
 
         // this_word_arr = []
         // unshuffled.push(this_word_arr)
@@ -240,16 +254,23 @@ function logicService($stateParams, $resource, Post, images) {
         // t_words_arr.push(this_word_arr)
         })
         //
-        // t_words_arr = t_words_arr.map(function (word) {
-        //   shuffled_word = word.sort(function(a, b){return 0.5 - Math.random()})
-        //   t_words_arr.push(shuffled_word)
-        // })
-        // console.log(unshuffled)
         console.log(t_words_arr)
+          t_words_arr.forEach(function (phrase) {
+            phrase.forEach(function(word) {
+              shuffled_word = word.sort(function(a, b){return 0.5 - Math.random()})
+              shuffled_word.postId = phrase.postId
+              shuffled.push(shuffled_word)
+            })
+            shuffled.postId = phrase.postId
+            final_shuffled.push(shuffled)
+            shuffled = []
+        })
+        // console.log(unshuffled)
+        console.log(final_shuffled)
 
       })
     })
-    return t_words_arr
+    return final_shuffled
   }
 
   function all() {
@@ -261,6 +282,7 @@ function IndexControllerFn(logic, Post, images) {
   this.posts = Post.query()
   this.images = images.query()
   this.indexPosts = logic.translateAll()
+  console.log(this.indexPosts)
   // this.shuffledPosts = logic.shuffle(this.indexPosts)
 
 }
