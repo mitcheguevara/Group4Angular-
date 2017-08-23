@@ -6,8 +6,8 @@
   <a data-ui-sref='postShow({id: post.id})'>{{post.content}}</a>
 </h3>
 
-<div data-ng-repeat="word in vm.indexPosts">
-    <img data-ng-repeat="letter in word" ng-src="{{letter.url}}" class="letter" />
+<div data-ng-repeat="word in vm.indexPosts track by $index">
+    <img class="letter {{translated.letter}}" data-ng-repeat="letter in word" ng-src="{{letter.url}}" />
 </div>
 
 
