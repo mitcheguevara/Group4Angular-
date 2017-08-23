@@ -73,6 +73,10 @@ section {
   box-shadow: -5px 5px 5px 5px rgba(0,0,0,0.5);
 }
 
+.post:hover {
+  box-shadow: -5px 5px 10px 10px rgba(0,0,0,0.6);
+}
+
 .word {
   padding: 20px;
   text-align: center;
@@ -153,17 +157,11 @@ section {
 }
 
 .m {
- animation: movem 1s ease;
+ animation: movem 1s ease forwards;
  left: 35%;
 }
 
-.r, .a, .n, .s, .o, .m, .l, .e, .t, .tt, .ee, .rr, .ss {
-  animation-delay: 1.5s;
-  animation-fill-mode: forwards;
-  position: absolute;
-}
-
-/*.l, .e, .t, .tt, .ee, .rr, .ss {
+/*.r, .a, .n, .s, .o, .m {
   animation-delay: 1.5s;
   animation-fill-mode: forwards;
   position: absolute;
@@ -171,7 +169,7 @@ section {
 
 .l {
   left: 45%;
-  animation: movel 1s ease;
+  animation: movel 1s ease forwards;
 }
 
 .e {
@@ -202,6 +200,12 @@ section {
 .ss {
   left: 4%;
   animation: movess 1s ease;
+}
+
+.r, .a, .n, .s, .o, .m, .l, .e, .t, .tt, .ee, .rr, .ss {
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+  position: absolute;
 }
 
 @keyframes mover {
@@ -249,7 +253,7 @@ section {
   }
 }
 
-/*@keyframes movel {
+@keyframes movel {
   0% {
     left: 45%;
   }
@@ -263,7 +267,7 @@ section {
     left: 31%;
   }
   100% {
-    left: 45%;
+    left: 59%;
   }
 }
 
@@ -290,7 +294,7 @@ section {
     left: 73%;
   }
   100% {
-    left: 50%;
+    left: 17%;
   }
 }
 
@@ -310,7 +314,7 @@ section {
   100% {
     left: 86%;
   }
-}*/
+}
 
 /********** MOBILE STYLES **********/
 
