@@ -17,7 +17,9 @@ main {
   padding-top: 50px;
   text-align: center;
 }
-
+h3{
+  visibility: hidden;
+}
 .word-wrapper {
   padding: 10% 0 2%;
 }
@@ -53,13 +55,13 @@ main {
 }
 
 .secondary-font {
-  font-family: 'Frijole', cursive;
+  font-family: 'Covered By Your Grace', cursive;
 }
 
 a.secondary-font {
-  color: black;
+  color: #373737;
   text-decoration: none;
-  font-size: 3em;
+  font-size: 8em;
   text-transform: capitalize;
 }
 

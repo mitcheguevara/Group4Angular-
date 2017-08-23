@@ -1,10 +1,9 @@
-<h1>Hello</h1>
+<h1>Randsom Letters</h1>
 <a ui-sref="postNew">New post</a>
 <h1>{{vm.post.content}}</h1>
+<a data-ui-sref='postShow({id: post.id})'>{{post.content}}</a>
 
-<h3 data-ng-repeat='post in vm.posts'>
-  <a data-ui-sref='postShow({id: post.id})'>{{post.content}}</a>
-</h3>
+
 
 
 
@@ -14,7 +13,8 @@
     </div>
 </div>
 
-
+<h3 data-ng-repeat='post in vm.posts'>
+</h3>
   <!-- <div data-ng-repeat='word in vm.words'>
     <img ng-src="{{word.src}}" alt="" />
   </div> -->
