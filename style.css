@@ -11,6 +11,7 @@ a {
 body {
   margin: 0 auto;
   background-image: url("images/cover-board.jpg");
+  text-transform: uppercase;
 }
 
 nav {
@@ -42,9 +43,8 @@ section {
   box-shadow: 0px 0px 15px 15px rgba(0,0,0,0.5);
 }
 
-
 .show-wrapper {
-  padding: 14% 0 2%;
+  padding: 10% 0 2%;
 }
 
 .letter {
@@ -129,6 +129,9 @@ form input, button {
 
 button {
   cursor: pointer;
+  text-transform: uppercase;
+  font-family: 'Covered By Your Grace', cursive;
+  letter-spacing: 3px;
 }
 
 .home-words {
@@ -139,13 +142,30 @@ button {
   font-family: 'Covered By Your Grace', cursive;
   letter-spacing: 3px;
 }
- a.secondary-font {
+ a.secondary-font, .update {
   color: #373737;
   text-decoration: none;
-  font-size: 4em;
-  padding-top: 50px;
-  text-transform: capitalize;
+  font-size: 2em;
+  text-transform: uppercase;
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: rgba(255,255,255,0.5);
+  width: 60%;
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.2);
+  letter-spacing: 3px;
 }
+
+.update {
+  font-family: 'Covered By Your Grace', cursive;
+  font-size: 24px;
+  text-transform: uppercase;
+  background-color: rgba(255,255,255,0.2);
+}
+
+ a.secondary-font:hover, .update:hover {
+   box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
+ }
 
 .notes-wrapper {
   position: relative;
@@ -361,7 +381,11 @@ button {
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 700px){
+
+  .home-words {
+    padding: 20% 0% 15% 0%;
+  }
 
   section, .post {
     width: 90%;
@@ -370,6 +394,11 @@ button {
     width: 50px;
     height: 50px;
   }
+  .word img {
+    width: 40px;
+    height: 40px;
+  }
+
   .space {
     height: 5px;
   }
@@ -385,5 +414,8 @@ button {
   }
   .space {
     height: 5px;
+  }
+  .home-words {
+    padding: 30% 0% 15% 0%;
   }
 }
