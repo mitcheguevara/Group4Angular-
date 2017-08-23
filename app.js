@@ -23,6 +23,7 @@ angular
   logicService
 ])
 .controller('IndexController' ,[
+  'logic',
   'Post',
   'images',
   IndexControllerFn
@@ -91,11 +92,11 @@ function imagesService($resource) {
 function logicService($stateParams, $resource, Post, images) {
   return {
     all:all,
-    translate:translate
+    translate:translate,
+    translateAll:translateAll
   }
 
   function translate() {
-    // var this_arr = []
     sorted_arr = []
     Post.get({id: $stateParams.id}).$promise.then(function (response) {
        post_string = response.content.toUpperCase().split('')
@@ -103,7 +104,7 @@ function logicService($stateParams, $resource, Post, images) {
 
        console.log(post_string)
 
-       images.query().$promise.then(function (img_response) {
+      images.query().$promise.then(function (img_response) {
 
          post_string.forEach(function (letter) {
            let letter_images = img_response.filter(function (img) {
@@ -121,51 +122,62 @@ function logicService($stateParams, $resource, Post, images) {
            }
          })
          console.log(sorted_arr)
+
         })
 
         })
         return sorted_arr
-        }
-      //  for (i=0; i < post_string.length; i++) {
-      //    let test_string = post_string[i]
-      //     console.log(test_string)
-       //
-      //      console.log(img_response)
-      //    for (l=1; l < img_response.length; l++) {
-      //     //  console.log(test_string)
-      //     ll = Math.floor((Math.random() * 400))
-      //      if (test_string === img_response[ll].letter) {
-      //        console.log(img_response[ll].url)
-      //        img_arr.push({letter: test_string, url:img_response[ll].url})
-      //          if (img_arr.length === post_string.length) {
-      //            for (x=0; x< post_string.length; x++) {
-      //             //  console.log(img_arr)
-      //              for (y=0; y< img_arr.length; y++) {
-      //               //  console.log('hi')
-      //                if (post_string[x] === img_arr[y].letter) {
-      //                 //  console.log(img_arr[y])
-      //                  sorted_arr.push(img_arr[y])
-      //                }
-        //            }
-        //          }
-        //        }
-        //      console.log(sorted_arr)
-        //      break
-        //    }
-        //  }
-      //  }
+}
 
+  function translateAll() {
+    sorted_arr = []
+    words_arr = []
+    t_words_arr = []
+    Post.query().$promise.then(function (response) {
+    images.query().$promise.then(function (img_response) {
 
+        response.forEach(function (post) {
+          var word_arr = []
+          word_arr.push(post.content)
+          words_arr.push(word_arr)
+        })
+        words_arr.forEach(function (word) {
+          post_string = word.toString().toUpperCase().split('')
+          let this_word_arr = []
+
+        post_string.forEach(function (letter) {
+          let letter_images = img_response.filter(function (img) {
+            return img.letter == letter
+          })
+
+          if (letter == ' ') {
+            this_word_arr.push({letter: 'space'})
+          }
+
+          else if (letter != ' ' ) {
+            let random_index = Math.floor(Math.random() * letter_images.length)
+            let random_letter_image = letter_images[random_index]
+            this_word_arr.push(random_letter_image)
+          }
+        })
+        t_words_arr.push(this_word_arr)
+        })
+        console.log(t_words_arr)
+
+      })
+    })
+    return t_words_arr
+  }
 
   function all() {
     return Post.query()
   }
 }
 
-function IndexControllerFn(Post, images) {
+function IndexControllerFn(logic, Post, images) {
   this.posts = Post.query()
   this.images = images.query()
-console.log(this.post)
+  this.indexPosts = logic.translateAll()
 }
 
 function ShowControllerFn(logic, Post, $stateParams) {
