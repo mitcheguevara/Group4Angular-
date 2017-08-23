@@ -93,7 +93,8 @@ function logicService($stateParams, $resource, Post, images) {
   return {
     all:all,
     translate:translate,
-    translateAll:translateAll
+    translateAll:translateAll,
+    // shuffle:shuffle
   }
 
   function translate() {
@@ -129,10 +130,37 @@ function logicService($stateParams, $resource, Post, images) {
         return sorted_arr
 }
 
+  // function shuffle(unshuff_arr) {
+  //   word_arr = ''
+  //   console.log(unshuff_arr)
+  //   unshuff_arr.$promise.then(function(response) {
+  //   response.forEach(function(word) {
+  //     console.log(word)
+  //     word.forEach(function(letter){
+  //       console.log(letter)
+  //     word_arr += letter.letter
+  //   })
+  //   })
+  // })
+  //
+  //   word_arr.split(' ')
+  //   console.log(word_arr)
+  //   // word_arr.forEach(function(word) {
+  //   //   word.sort(function(a, b){return 0.5 - Math.random()})
+  //   // })
+  //   console.log(word_arr)
+  //   return(word_arr)
+  // }
+
   function translateAll() {
     sorted_arr = []
     words_arr = []
     t_words_arr = []
+    unshuffled = []
+    unshuffled_arr = []
+    this_word_arr = []
+    post_words = []
+    space_arr = []
     Post.query().$promise.then(function (response) {
     images.query().$promise.then(function (img_response) {
 
@@ -142,26 +170,81 @@ function logicService($stateParams, $resource, Post, images) {
           words_arr.push(word_arr)
         })
         words_arr.forEach(function (word) {
-          post_string = word.toString().toUpperCase().split('')
+          console.log(word)
           let this_word_arr = []
+            // console.log(post_string)
+          if (word[0].includes(' ')) {
+            space_arr = word.toString().toUpperCase().split(' ')
+            console.log(space_arr)
+            space_arr.forEach(function(sWord) {
+              sWord_arr= sWord.split('')
+                sWord_arr.forEach(function(sLetter){
+                  let letter_images = img_response.filter(function (img) {
+                    return img.letter == sLetter
+                  })
+                  let random_index = Math.floor(Math.random() * letter_images.length)
+                  let random_letter_image = letter_images[random_index]
+                  this_word_arr.push(random_letter_image)
+                  var unshf= Object.assign({}, random_letter_image)
+                  unshuffled.push(unshf)
 
-        post_string.forEach(function (letter) {
+                })
+
+                post_words.push(this_word_arr)
+                this_word_arr = []
+            })
+
+                t_words_arr.push(post_words)
+
+          }
+
+          else {
+            post_string = word.toString().toUpperCase().split('')
+
+            post_string.forEach(function (letter) {
           let letter_images = img_response.filter(function (img) {
             return img.letter == letter
           })
 
           if (letter == ' ') {
-            this_word_arr.push({letter: 'space'})
+            // this_word_arr.push({letter: 'space'})
+            console.log(this_word_arr)
+            post_words.push(this_word_arr)
+            this_word_arr = []
           }
 
           else if (letter != ' ' ) {
             let random_index = Math.floor(Math.random() * letter_images.length)
             let random_letter_image = letter_images[random_index]
             this_word_arr.push(random_letter_image)
+            var unshf= Object.assign({}, random_letter_image)
+            unshuffled.push(unshf)
+            // console.log(post_string.indexOf(letter))
+            if (post_string.indexOf(letter) === post_string.length) {
+              post_words.push(this_word_arr)
+            }
           }
         })
+
+        unshuffled_arr.push(unshuffled)
+        unshuffled = []
+        // console.log(this_word_arr)
+        // console.log(unshuffled_arr)
+
         t_words_arr.push(this_word_arr)
+      }
+
+        // this_word_arr = []
+        // unshuffled.push(this_word_arr)
+        // shuffled_word = this_word_arr.sort(function(a, b){return 0.5 - Math.random()})
+        // t_words_arr.push(this_word_arr)
         })
+        //
+        // t_words_arr = t_words_arr.map(function (word) {
+        //   shuffled_word = word.sort(function(a, b){return 0.5 - Math.random()})
+        //   t_words_arr.push(shuffled_word)
+        // })
+        // console.log(unshuffled)
         console.log(t_words_arr)
 
       })
@@ -178,6 +261,8 @@ function IndexControllerFn(logic, Post, images) {
   this.posts = Post.query()
   this.images = images.query()
   this.indexPosts = logic.translateAll()
+  // this.shuffledPosts = logic.shuffle(this.indexPosts)
+
 }
 
 function ShowControllerFn(logic, Post, $stateParams) {
