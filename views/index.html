@@ -7,7 +7,7 @@
 </h3>
 
 <div data-ng-repeat="word in vm.indexPosts track by $index">
-    <img class="letter {{translated.letter}}" data-ng-repeat="letter in word" ng-src="{{letter.url}}" />
+    <img class="letter {{translated.letter}}" data-ng-repeat="letter in word track by $index" ng-src="{{letter.url}}" />
 </div>
 
 
