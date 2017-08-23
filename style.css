@@ -48,6 +48,54 @@ main {
   transform: rotate(2deg);
 }
 
+.home-words {
+  padding: 5%;
+}
+
+.secondary-font {
+  font-family: 'Frijole', cursive;
+}
+
+a.secondary-font {
+  color: black;
+  text-decoration: none;
+  font-size: 3em;
+  text-transform: capitalize;
+}
+
+.r {
+  position: absolute;
+  animation: mover 1s ease;
+  animation-delay: 1.6s;
+  animation-fill-mode: forwards;
+}
+
+.a {
+  position: absolute;
+  animation: movea 1s ease;
+  animation-delay: 1.6s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes mover {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 100px;
+  }
+}
+
+@keyframes movea {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -100px;
+  }
+}
+
+
 /********** MOBILE STYLES **********/
 
 @media screen and (max-width: 950px){
