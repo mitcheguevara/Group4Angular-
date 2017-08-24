@@ -84,14 +84,14 @@ function RouterFunction($stateProvider) {
   )
 }
 function postsService($resource) {
-  return $resource('http://localhost:3000/posts/:id', {}, {
+  return $resource('https://ransom-letters.herokuapp.com/', {}, {
       update: {method: 'PUT'},
 
     })
 }
 
 function imagesService($resource) {
-  return $resource('http://localhost:3000/images/:id', {}, {
+  return $resource('https://ransom-letters.herokuapp.com/', {}, {
       update: {method: 'PUT'},
     })
 }
