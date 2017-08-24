@@ -38,7 +38,7 @@ nav a {
 
  /********** POST AND LETTER STYLES **********/
 
-section {
+section, .show-wrapper {
   background-image: url('images/paperedit.jpg');
   width: 80%;
   margin: 0 auto;
@@ -49,7 +49,12 @@ section {
 }
 
 .show-wrapper {
-  padding: 10% 0 2%;
+  padding: 10% 0%;
+  height: auto;
+}
+
+.show-page {
+  padding: 5% 0%;
 }
 
 .letter {
@@ -164,7 +169,7 @@ button {
   font-size: 24px;
   text-transform: uppercase;
   background-color: rgba(255,255,255,0.2);
-  margin: 30px auto;
+  margin: 10% auto 5%;
 }
 
  a.secondary-font:hover, .update:hover {
@@ -382,7 +387,7 @@ button {
 /********** MOBILE STYLES **********/
 
 @media screen and (max-width: 980px){
-  section, .post {
+  section, .post, .show-wrapper {
     width: 90%;
   }
   .letter {
@@ -401,9 +406,14 @@ button {
     width: 100%;
   }
 
-  section, .post {
+  section, .post, .show-wrapper {
     width: 90%;
   }
+  .show-page {
+    padding: 10%;
+
+  }
+
   .letter {
     width: 50px;
     height: 50px;
@@ -419,8 +429,12 @@ button {
 }
 
 @media screen and (max-width: 400px){
-  section, .post {
+  section, .post, .show-wrapper {
     width: 96%;
+    padding-top: 15%;
+  }
+  .post-wrapper, .show-page {
+    padding-top: 15%;
   }
   .letter, .word img {
     width: 35px;
@@ -436,10 +450,5 @@ button {
   .word {
     padding: 10px;
   }
-  .post-wrapper {
-    padding-top: 15%;
-  }
-  section {
-    padding-top: 10%;
-  }
+
 }
