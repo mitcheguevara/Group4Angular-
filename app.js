@@ -47,6 +47,13 @@ angular
 
 function RouterFunction($stateProvider) {
   $stateProvider
+  .state('home', {
+    url: '/',
+    templateUrl: 'index.html',
+    controller: 'IndexController',
+    controllerAs: 'vm'
+  }
+  )
   .state('postIndex', {
     url: '/index',
     templateUrl: 'views/index.html',
