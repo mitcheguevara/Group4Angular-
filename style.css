@@ -161,6 +161,7 @@ button {
   font-size: 24px;
   text-transform: uppercase;
   background-color: rgba(255,255,255,0.2);
+  margin: 30px auto;
 }
 
  a.secondary-font:hover, .update:hover {
