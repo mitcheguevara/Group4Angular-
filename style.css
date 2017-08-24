@@ -419,4 +419,13 @@ button {
   .home-words {
     padding: 30% 0% 15% 0%;
   }
+  .word {
+    padding: 10px;
+  }
+  .post-wrapper {
+    padding-top: 15%;
+  }
+  section {
+    padding-top: 10%;
+  }
 }
