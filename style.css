@@ -136,6 +136,8 @@ button {
 
 .home-words {
   padding: 10% 0% 15% 0%;
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 .secondary-font {
@@ -386,6 +388,7 @@ button {
 
   .home-words {
     padding: 20% 0% 15% 0%;
+    width: 100%;
   }
 
   section, .post {
@@ -418,6 +421,7 @@ button {
   }
   .home-words {
     padding: 30% 0% 15% 0%;
+    width: 100%;
   }
   .word {
     padding: 10px;
