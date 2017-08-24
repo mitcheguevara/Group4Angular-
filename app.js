@@ -84,14 +84,14 @@ function RouterFunction($stateProvider) {
   )
 }
 function postsService($resource) {
-  return $resource('https://ransom-letters.herokuapp.com/', {}, {
+  return $resource('https://ransom-letters.herokuapp.com/posts/:id', {}, {
       update: {method: 'PUT'},
 
     })
 }
 
 function imagesService($resource) {
-  return $resource('https://ransom-letters.herokuapp.com/', {}, {
+  return $resource('https://ransom-letters.herokuapp.com/images/:id', {}, {
       update: {method: 'PUT'},
     })
 }
