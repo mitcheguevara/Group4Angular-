@@ -1,3 +1,5 @@
+ /********** BASE STYLES **********/
+
 * {
   -moz-box-sizing: border-box; /* Firexfox */
   -webkit-box-sizing: border-box; /* Safari/Chrome/iOS/Android */
@@ -12,6 +14,10 @@ body {
   margin: 0 auto;
   background-image: url("images/cover-board.jpg");
   text-transform: uppercase;
+}
+
+main {
+  margin: 0 auto;
 }
 
 nav {
@@ -29,9 +35,8 @@ nav {
 nav a {
   color: #ececec;
 }
-main {
-  margin: 0 auto;
-}
+
+ /********** POST AND LETTER STYLES **********/
 
 section {
   background-image: url('images/paperedit.jpg');
@@ -107,6 +112,8 @@ section {
   transform: rotate(2deg);
 }
 
+ /********** FORM STYLES **********/
+
 form {
   margin-top: 15%;
 }
@@ -132,12 +139,6 @@ button {
   text-transform: uppercase;
   font-family: 'Covered By Your Grace', cursive;
   letter-spacing: 3px;
-}
-
-.home-words {
-  padding: 10% 0% 15% 0%;
-  max-width: 80%;
-  margin: 0 auto;
 }
 
 .secondary-font {
@@ -168,6 +169,14 @@ button {
 
  a.secondary-font:hover, .update:hover {
    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
+ }
+
+ /********** HOME LETTERS **********/
+
+ .home-words {
+   padding: 10% 0% 15% 0%;
+   max-width: 80%;
+   margin: 0 auto;
  }
 
 .notes-wrapper {
@@ -251,6 +260,7 @@ button {
   position: absolute;
 }
 
+/********** HOME LETTER ANIMATIONS **********/
 
 @keyframes mover {
   0% {
