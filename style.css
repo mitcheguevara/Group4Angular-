@@ -402,7 +402,7 @@ button {
 @media screen and (max-width: 700px){
 
   .home-words {
-    padding: 20% 0% 15% 0%;
+    padding: 20% 0;
     width: 100%;
   }
   .post-wrapper, .show-page  {
@@ -441,7 +441,7 @@ button {
     height: 35px;
   }
   .home-words {
-    padding: 20% 0% 15% 0%;
+    padding: 20% 0 25% 0;
     width: 100%;
   }
   .word {
