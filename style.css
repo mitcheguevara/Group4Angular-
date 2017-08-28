@@ -73,9 +73,9 @@ section, .show-wrapper {
 
 .post {
   background-image: url('images/paperedit.jpg');
-  margin: 2% auto;
+  margin: 2vw auto;
   width: 80%;
-  padding: 5% 0;
+  padding: 5vw 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -395,7 +395,7 @@ button {
     height: 70px;
   }
   .space {
-    height: 5px;
+    height: 1px;
   }
 }
 
@@ -405,13 +405,11 @@ button {
     padding: 20% 0% 15% 0%;
     width: 100%;
   }
-
-  section, .post, .show-wrapper {
-    width: 90%;
+  .post-wrapper, .show-page  {
+    padding-top: 15%;
   }
-  .show-page {
-    padding: 10%;
-
+  .word {
+    padding: 5px;
   }
 
   .letter {
@@ -422,14 +420,13 @@ button {
     width: 40px;
     height: 40px;
   }
-
   .space {
-    height: 5px;
+    height: 1px;
   }
 }
 
 @media screen and (max-width: 400px){
-  section, .post, .show-wrapper {
+  section, .show-wrapper {
     width: 96%;
     padding-top: 15%;
   }
@@ -440,15 +437,15 @@ button {
     width: 35px;
     height: 35px;
   }
-  .space {
-    height: 5px;
-  }
   .home-words {
-    padding: 30% 0% 15% 0%;
+    padding: 20% 0% 15% 0%;
     width: 100%;
   }
   .word {
-    padding: 10px;
+    padding: 5px;
+  }
+  .space {
+    height: 1px;
   }
 
 }

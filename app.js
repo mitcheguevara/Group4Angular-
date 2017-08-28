@@ -110,7 +110,7 @@ function logicService($stateParams, $resource, Post, images) {
        post_string = response.content.toUpperCase().split('')
        img_arr = []
 
-       console.log(post_string)
+
 
       images.query().$promise.then(function (img_response) {
 
@@ -129,7 +129,7 @@ function logicService($stateParams, $resource, Post, images) {
              sorted_arr.push(random_letter_image)
            }
          })
-         console.log(sorted_arr)
+
 
         })
 
@@ -161,7 +161,7 @@ function logicService($stateParams, $resource, Post, images) {
           words_arr.push(word_arr)
         })
         words_arr.forEach(function (word) {
-          console.log(word)
+
           let this_word_arr = []
             space_arr = word.toString().toUpperCase().split(' ')
             space_arr.forEach(function(sWord) {
@@ -188,7 +188,7 @@ function logicService($stateParams, $resource, Post, images) {
                 t_words_arr.push(post_words)
                 post_words = []
         })
-        console.log(t_words_arr)
+
           t_words_arr.forEach(function (phrase) {
             phrase.forEach(function(word) {
               shuffled_word = word.sort(function(a, b){return 0.5 - Math.random()})
@@ -199,7 +199,7 @@ function logicService($stateParams, $resource, Post, images) {
             final_shuffled.push(shuffled)
             shuffled = []
         })
-        console.log(final_shuffled)
+
 
       })
     })
@@ -215,7 +215,7 @@ function IndexControllerFn(logic, Post, images) {
   this.posts = Post.query()
   this.images = images.query()
   this.indexPosts = logic.translateAll()
-  console.log(this.indexPosts)
+
 }
 
 function ShowControllerFn(logic, Post, $stateParams) {
