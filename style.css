@@ -423,6 +423,9 @@ button {
   .space {
     height: 1px;
   }
+  a.secondary-font, button, .update, .secondary-font {
+    font-size: 1em;
+  }
 }
 
 @media screen and (max-width: 400px){
