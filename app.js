@@ -1,3 +1,5 @@
+// Consider refactoring your angular app into separate directories / files
+
 angular
 .module('ransomApp', [
   'ui.router',
@@ -5,6 +7,7 @@ angular
 ])
 .config([
   '$stateProvider',
+  '$urlRouterProvider',
   RouterFunction
 ])
 .factory('Post', [
@@ -12,6 +15,7 @@ angular
   postsService
 ])
 .factory('images', [
+  // To be consistent with the other factory, call this `Image`
   '$resource',
   imagesService
 ])
@@ -45,7 +49,8 @@ angular
   PostEditController
 ])
 
-function RouterFunction($stateProvider) {
+function RouterFunction($stateProvider, $urlRouterProvider) {
+  // Good job being consistent with your formatting and naming conventions
   $stateProvider
   .state('home', {
     url: '/',
@@ -82,6 +87,7 @@ function RouterFunction($stateProvider) {
   controllerAs: 'vm'
   }
   )
+  $urlRouterProvider.otherwise('/')
 }
 function postsService($resource) {
   return $resource('http://localhost:3000/posts/:id', {}, {
@@ -104,6 +110,8 @@ function logicService($stateParams, $resource, Post, images) {
     // shuffle:shuffle
   }
 
+  // Really good, semantic code here. However, consider breaking this translate function into smaller
+  // functions that call one another. Perhaps ones called `getImages`, `translateLetter`, etc.
   function translate() {
     sorted_arr = []
     Post.get({id: $stateParams.id}).$promise.then(function (response) {
@@ -137,6 +145,7 @@ function logicService($stateParams, $resource, Post, images) {
         return sorted_arr
 }
 
+  // DEFINITELY refactor this function into smaller functions (however, still impressive code)
   function translateAll() {
     sorted_arr = []
     words_arr = []
@@ -216,6 +225,7 @@ function IndexControllerFn(logic, Post, images) {
   this.images = images.query()
   this.indexPosts = logic.translateAll()
   console.log(this.indexPosts)
+  // Good job abstracting models / data into services and injecting them
 }
 
 function ShowControllerFn(logic, Post, $stateParams) {
@@ -233,6 +243,9 @@ function PostNewController ($state, Post) {
   }
 }
 
+// Within the PostEditController, I don't thing you need the reload: true options for either
+// of your state transitions since you are transitioning to a different state. See if it works
+// without it
 function PostEditController($state, Post) {
   this.post = Post.get({id: $state.params.id})
   this.update = function () {

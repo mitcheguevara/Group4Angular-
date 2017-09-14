@@ -1,4 +1,7 @@
 <section>
+  <!-- While not neccessary, you could use ng-submit on the form for update so that if
+  the user presses enter, it triggers the update instead of them having to explicity
+  click the button -->
   <form>
     <input class="placeholder" ng-model="vm.post.content" />
     <button type="button" ng-click="vm.update()">Update</button>

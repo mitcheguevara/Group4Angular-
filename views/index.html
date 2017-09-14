@@ -1,3 +1,4 @@
+<!-- Nice application of ng-repeat -->
 <div class="post-wrapper">
   <div data-ng-repeat="post in vm.indexPosts track by $index" class="post" ui-sref="postShow({id: post.postId})" >
     <div class="word" data-ng-repeat="word in post" ui-sref="postShow({id: post.postId})">
