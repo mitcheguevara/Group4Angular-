@@ -152,19 +152,19 @@ function logicService($stateParams, $resource, Post, images) {
     final_shuffled = []
     shuffled = []
     Post.query().$promise.then(function (response) {
-    images.query().$promise.then(function (img_response) {
-
+      images.query().$promise.then(function (img_response) {
         response.forEach(function (post) {
           var word_arr = []
           word_arr.push(post.content)
           word_arr.postId = post.id
           words_arr.push(word_arr)
         })
+
         words_arr.forEach(function (word) {
           console.log(word)
           let this_word_arr = []
-            space_arr = word.toString().toUpperCase().split(' ')
-            space_arr.forEach(function(sWord) {
+          space_arr = word.toString().toUpperCase().split(' ')
+          space_arr.forEach(function(sWord) {
               sWord_arr= sWord.split('')
                 sWord_arr.forEach(function(sLetter){
                   let letter_images = img_response.filter(function (img) {
@@ -177,16 +177,16 @@ function logicService($stateParams, $resource, Post, images) {
                   unshuffled_word.push(unshf)
 
                 })
-                unshuffled_phrase.push(unshuffled_word)
-                unshuffled_word = []
-                post_words.postId = word.postId
-                post_words.push(this_word_arr)
-                this_word_arr = []
+              unshuffled_phrase.push(unshuffled_word)
+              unshuffled_word = []
+              post_words.postId = word.postId
+              post_words.push(this_word_arr)
+              this_word_arr = []
             })
-                unshuffled_arr.push(unshuffled_phrase)
-                unshuffled_arr = []
-                t_words_arr.push(post_words)
-                post_words = []
+            unshuffled_arr.push(unshuffled_phrase)
+            unshuffled_arr = []
+            t_words_arr.push(post_words)
+            post_words = []
         })
         console.log(t_words_arr)
           t_words_arr.forEach(function (phrase) {
@@ -195,9 +195,9 @@ function logicService($stateParams, $resource, Post, images) {
               shuffled_word.postId = phrase.postId
               shuffled.push(shuffled_word)
             })
-            shuffled.postId = phrase.postId
-            final_shuffled.push(shuffled)
-            shuffled = []
+          shuffled.postId = phrase.postId
+          final_shuffled.push(shuffled)
+          shuffled = []
         })
         console.log(final_shuffled)
 
