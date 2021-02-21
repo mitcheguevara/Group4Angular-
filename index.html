@@ -13,6 +13,8 @@
   <body>
     <nav class="secondary-font"><a ui-sref="home">home</a> | <a ui-sref="postIndex">letters</a> | <a ui-sref="postNew">write</a></nav>
     <main data-ui-view>
+      <!-- it shouldn't be neccessary to embed this initial home view inside of the ui-view. Use $urlRouterProvider to redirect
+      to home on page load (check out app.js) -->
     <section>
       <div class="home-words">
         <div class="ransom-wrapper">
